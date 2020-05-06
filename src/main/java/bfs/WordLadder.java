@@ -68,11 +68,11 @@ public class WordLadder {
                         for (char chr = 'a'; chr <= 'z'; chr++) {
                             chars[j] = chr;
                             String modify = new String(chars);
-                            if (modify.equals(endWord)) {
-                                // 层序遍历由里到外 一定是当前的最小层
-                                return level + 1;
-                            }
                             if (dict.contains(modify)) {
+                                if (modify.equals(endWord)) {
+                                    // 层序遍历由里到外 一定是当前的最小层
+                                    return level + 1;
+                                }
                                 deque.addLast(modify);
                                 dict.remove(modify);
                             }

@@ -48,7 +48,7 @@
 // 
 //
 
-package recursion;
+package dfs;
 
 import java.util.HashSet;
 import java.util.Set;
