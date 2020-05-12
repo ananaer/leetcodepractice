@@ -44,8 +44,8 @@ class Solution {
                 } else {
                     lo = mid + 1;
                 }
-            } else {
-                // 说明mid是在旋转数组的后半边
+            } else {// 说明mid是在旋转数组的后半边
+                // target在旋转数据的后半边的单调区间里，划分右区间
                 if (target > nums[mid] && target <= nums[hi]) {
                     lo = mid + 1;
                 } else {
