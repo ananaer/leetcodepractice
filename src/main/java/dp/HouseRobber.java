@@ -29,23 +29,29 @@ public class HouseRobber {
       }
       //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-          private int[] note;
+//          private int[] note;
     public int rob(int[] nums) {
-        /*// 1.自底向上
+        // 1.自底向上
         // dp[i] 表示从第i间房子开始抢，能抢到的最多的钱
         // 两种选择，抢或者不抢
-        int[] dp = new int[nums.length + 2];
+        // 1.1 优化空间
+        int dp_2 = 0;
+        int dp_1 = 0;
+        int dp = 0;
         for (int i = nums.length - 1; i >= 0; i--) {
             // 抢了的话就是 上上间
-            dp[i] = Math.max(nums[i] + dp[i + 2], dp[i + 1]);
+            dp = Math.max(nums[i] + dp_2, dp_1);
+            dp_2 = dp_1;
+            dp_1 = dp;
         }
-        return dp[0];*/
-        // 2.自顶向下 递归 带备忘录
+        //
+        return dp;
+        /*// 2.自顶向下 递归 带备忘录
         note = new int[nums.length];
         Arrays.fill(note, -1);
-        return dp(nums, 0);
+        return dp(nums, 0);*/
     }
-          private int dp(int[] nums, int start) {
+         /* private int dp(int[] nums, int start) {
               // 跳出条件
               if (start >= nums.length) {
                   return 0;
@@ -57,7 +63,7 @@ class Solution {
                   note[start] = max;
                   return max;
               }
-          }
+          }*/
 }
 
 
