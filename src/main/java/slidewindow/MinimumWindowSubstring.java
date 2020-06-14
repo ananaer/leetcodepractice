@@ -54,6 +54,8 @@ class Solution {
                     vaild++;
                 }
             }
+            System.out.println("window"+window+"valid"+vaild+"need"+need);
+
             // 找到所有可行解了，开始找最优解
             while (vaild == need.size()) {
                 char d = s.charAt(left);

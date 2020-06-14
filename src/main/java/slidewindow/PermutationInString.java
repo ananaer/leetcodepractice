@@ -66,6 +66,7 @@ public class PermutationInString {
                           valid++;
                       }
                   }
+                  System.out.println("window"+window+"valid"+valid+"need"+need);
                   // 收缩窗口
                   while (valid == need.size()) {
                       // 终结条件
