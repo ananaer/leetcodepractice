@@ -57,6 +57,7 @@ class Solution {
               } else {
                   for (int i = start; i < candidates.length; i++) {
                       tmp.add(candidates[i]);
+                      // i没有+1表示元素可被重复使用
                       backtrack(res, tmp, curVal - candidates[i], candidates, i);
                       tmp.remove(tmp.size() - 1);
                   }
