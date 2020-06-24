@@ -24,28 +24,31 @@ import java.util.Set;
 public class Combinations {
     public static void main(String[] args) {
         Solution solution = new Combinations().new Solution();
+        solution.combine(4, 2);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public List<List<Integer>> combine(int n, int k) {
             List<List<Integer>> res = new ArrayList<>();
-            trackBack(res, new HashSet<Integer>(), n, k,1);
+            trackBack(res, new ArrayList<Integer>(), n, k,1);
             return res;
         }
 
-        private void trackBack(List<List<Integer>> res, Set<Integer> tmpList, int n, int k, int start) {
-            if (tmpList.size() == k) {
-                res.add(new ArrayList<Integer>(tmpList));
+        private void trackBack(List<List<Integer>> res, List<Integer> tmpList, int n, int k, int start) {
+            // 每下一层k-- 当k为0时满足结构
+            if (k == 0) {
+                res.add(new ArrayList<>(tmpList));
+                return;
             }
-            for (int i = start; i <= n; i++) {
-                if (tmpList.contains(i)) {
-                    continue;
-                }
+            // 为什么i的条件是n-k+1呢？
+            // 当你知道后半层的数量肯定不足够K时，后面就不需要在继续回溯了
+            // 比如n=10,k=5;当我们遍历到i=7时，后面只有 8 9 10 最多只有四个数 因此没必要遍历了
+            for (int i = start; i <= n - k + 1; i++) {
                 tmpList.add(i);
                 // 一个元素只能用一次 所以i+1
-                trackBack(res, tmpList, n, k, i + 1);
-                tmpList.remove(i);
+                trackBack(res, tmpList, n, k - 1, i + 1);
+                tmpList.remove(tmpList.size() - 1);
             }
         }
     }
