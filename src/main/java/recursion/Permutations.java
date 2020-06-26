@@ -23,6 +23,8 @@ import java.util.List;
 public class Permutations {
       public static void main(String[] args) {
            Solution solution = new Permutations().new Solution();
+          List<List<Integer>> permute = solution.permute(new int[]{1, 2, 3, 4});
+          System.out.println(permute);
       }
       //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
