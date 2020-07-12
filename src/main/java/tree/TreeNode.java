@@ -1,6 +1,6 @@
 package tree;
 
-public class TreeNode {
+public class  TreeNode {
     int val;
     public TreeNode left;
     public TreeNode right;
