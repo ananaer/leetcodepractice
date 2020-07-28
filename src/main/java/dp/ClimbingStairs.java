@@ -33,7 +33,7 @@ class Solution {
     public int climbStairs(int n) {
         // 动态规划 递推公式 dp[n] = dp[n-1]+dp[n-2]
         // dp[0] 无意义 n是正整数 dp[1]=1, dp[2]=2
-        if (n == 1) {
+        /*if (n == 1) {
             return 1;
         }
         int[] dp = new int[n + 1];
@@ -42,7 +42,21 @@ class Solution {
         for (int i = 3; i <= n; i++) {
             dp[i] = dp[i - 1] + dp[i - 2];
         }
-        return dp[n];
+        return dp[n];*/
+        // f(n) = f(n-1) +f(n-2)
+        // f(1) = 1; f(2) = 2;
+        // 动态规划避免傻递归
+        if(n <=2){
+            return n;
+        }
+        int a=1, b=2;
+        int res = 0;
+        for(int i = 3; i <= n; i++){
+            res = a + b;
+            a = b;
+            b = res;
+        }
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
