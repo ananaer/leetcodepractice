@@ -51,7 +51,7 @@ class Solution {
             }
             // 注意存的是下标
             deque.addLast(i);
-            // 判断窗口大小 移除窗口外的元素
+            // 判断窗口大小 移除左边窗口外的元素
             if (deque.peekFirst() == i - k) {
                 deque.pollFirst();
             }
