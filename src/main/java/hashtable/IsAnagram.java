@@ -38,26 +38,35 @@ public class IsAnagram {
         } */
 
         // 2.使用Hash表判断，时间复杂度O(n)
-        if (s.length() != t.length()) {
-            return false;
-        }
-        HashMap<Character, Integer> map = new HashMap<Character, Integer>(s.length());
-        for (int i = 0; i < s.length(); i++) {
-            char s_key = s.charAt(i);
-            char t_key = t.charAt(i);
-            if (null == map.get(s_key)) {
-                map.put(s_key, 1);
-            } else {
-                map.put(s_key, map.get(s_key) + 1);
-            }
-            if (null == map.get(t_key)) {
-                map.put(t_key, -1);
-            } else {
-                map.put(t_key, map.get(t_key) - 1);
-            }
-        }
-        for(Map.Entry<Character, Integer> entry : map.entrySet()){
-            if (entry.getValue() != 0) {
+//        if (s.length() != t.length()) {
+//            return false;
+//        }
+//        HashMap<Character, Integer> map = new HashMap<Character, Integer>(s.length());
+//        for (int i = 0; i < s.length(); i++) {
+//            char s_key = s.charAt(i);
+//            char t_key = t.charAt(i);
+//            if (null == map.get(s_key)) {
+//                map.put(s_key, 1);
+//            } else {
+//                map.put(s_key, map.get(s_key) + 1);
+//            }
+//            if (null == map.get(t_key)) {
+//                map.put(t_key, -1);
+//            } else {
+//                map.put(t_key, map.get(t_key) - 1);
+//            }
+//        }
+//        for(Map.Entry<Character, Integer> entry : map.entrySet()){
+//            if (entry.getValue() != 0) {
+//                return false;
+//            }
+//        }
+//        return true;
+        int[] vaild = new int[26];
+        for(int i=0; i < s.length(); i++) vaild[s.charAt(i) - 'a'] ++;
+        for(int i=0; i < t.length(); i++) vaild[t.charAt(i) - 'a'] --;
+        for(int i=0; i < 26; i++){
+            if(vaild[i] != 0){
                 return false;
             }
         }
