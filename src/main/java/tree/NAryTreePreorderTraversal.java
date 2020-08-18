@@ -18,6 +18,8 @@ package tree;
 
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 public class NAryTreePreorderTraversal{
@@ -47,8 +49,21 @@ class Node {
 class Solution {
     public List<Integer> preorder(Node  root) {
         // 递归实现
-        List<Integer> list = new ArrayList();
-        return inorderTraversalHelp(root, list);
+//        List<Integer> list = new ArrayList();
+//        return inorderTraversalHelp(root, list);
+        // 迭代
+        List<Integer> res = new ArrayList();
+        if(root == null) return res;
+        Deque<Node> stack = new LinkedList();
+        stack.addFirst(root);
+        while(!stack.isEmpty()){
+            Node node = stack.removeLast();
+            res.add(node.val);
+            for(int i=node.children.size()-1; i >=0; i--){
+                stack.addLast(node.children.get(i));
+            }
+        }
+        return res;
     }
     public List<Integer> inorderTraversalHelp(Node root, List<Integer> result) {
         if (null == root) {
