@@ -34,6 +34,8 @@
 package tree;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ValidateBinarySearchTree {
@@ -51,31 +53,25 @@ public class ValidateBinarySearchTree {
  * }
  */
 class Solution {
-    List<Integer> list = new ArrayList();
-    Boolean result = true;
+
     public boolean isValidBST(TreeNode root) {
-        // 利用二叉搜索树中序遍历的值是递增这个特性
-        // 递归实现
-        inorderTraversalHelp(root);
-        return result;
-    }
-
-    void inorderTraversalHelp(TreeNode root) {
-        if (null == root) {
-            return ;
-        }
-        inorderTraversalHelp(root.left);
-        if (list.size() > 0) {
-            if (list.get(list.size() - 1) >= root.val) {
-                result = false;
-                return;
+        // 结合中序遍历非递归版本的实现
+        // 以及二叉搜索树有序的特性
+        if (root == null) return true;
+        Deque<TreeNode> stack = new LinkedList<>();
+        TreeNode pre = null;
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
             }
+            root = stack.pop();
+            if(pre != null && root.val <= pre.val) return false;
+            pre = root;
+            root = root.right;
         }
+        return true;}
 
-        list.add(root.val);
-        inorderTraversalHelp(root.right);
-
-    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
