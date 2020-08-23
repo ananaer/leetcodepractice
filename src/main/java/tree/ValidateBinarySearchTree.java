@@ -39,40 +39,42 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ValidateBinarySearchTree {
-      public static void main(String[] args) {
-           Solution solution = new ValidateBinarySearchTree().new Solution();
-      }
-      //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-class Solution {
+    public static void main(String[] args) {
+        Solution solution = new ValidateBinarySearchTree().new Solution();
+    }
+    //leetcode submit region begin(Prohibit modification and deletion)
 
-    public boolean isValidBST(TreeNode root) {
-        // 结合中序遍历非递归版本的实现
-        // 以及二叉搜索树有序的特性
-        if (root == null) return true;
-        Deque<TreeNode> stack = new LinkedList<>();
-        TreeNode pre = null;
-        while (root != null || !stack.isEmpty()) {
-            while (root != null) {
-                stack.push(root);
-                root = root.left;
+    /**
+     * Definition for a binary tree node.
+     * public class TreeNode {
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode(int x) { val = x; }
+     * }
+     */
+    class Solution {
+
+        public boolean isValidBST(TreeNode root) {
+            // 结合中序遍历非递归版本的实现
+            // 以及二叉搜索树有序的特性
+            if (root == null) return true;
+            Deque<TreeNode> stack = new LinkedList<>();
+            TreeNode pre = null;
+            while (root != null || !stack.isEmpty()) {
+                while (root != null) {
+                    stack.push(root);
+                    root = root.left;
+                }
+                root = stack.pop();
+                if (pre != null && root.val <= pre.val) return false;
+                pre = root;
+                root = root.right;
             }
-            root = stack.pop();
-            if(pre != null && root.val <= pre.val) return false;
-            pre = root;
-            root = root.right;
+            return true;
         }
-        return true;}
 
-}
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
-  }
+}
