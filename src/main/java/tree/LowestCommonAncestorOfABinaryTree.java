@@ -50,9 +50,12 @@ package tree;
  */
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        // 整体采用后续遍历，这样才能比较左右子树向上回溯
+        // 当root==null时说明pq不在子树中 ，或者找到了pq 这三种情况都直接返回
         if(root == null || root == p || root == q)  return root;
         TreeNode left = lowestCommonAncestor(root.left, p, q);
         TreeNode right = lowestCommonAncestor(root.right, p, q);
+        // 当pq都不为空则说明pq分别在左右子树，因此root就是最近的公共祖先
         if(left != null && right != null)   return root;
         return left != null ? left : right;
     }
