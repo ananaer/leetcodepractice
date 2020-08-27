@@ -51,6 +51,7 @@ class Solution {
         int root_val = preorder[p_start];
         TreeNode root = new TreeNode(root_val);
         //在中序遍历中找到根节点的位置
+        // FIXME: 2020/8/27 这里可以避免遍历使用Map
         int i_root_index = 0;
         for (int i = i_start; i < i_end; i++) {
             if (root_val == inorder[i]) {
