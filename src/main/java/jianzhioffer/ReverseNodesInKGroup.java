@@ -46,7 +46,8 @@ class Solution {
   }
     public ListNode reverseKGroup(ListNode head, int k) {
         // 1.基础反转链表 head->null
-        // 2.返回k个 head -> k个
+        // 2.对于 head -> k 进行链表翻转
+        // 3.拼接结果并返回
         if (head == null) {
             return null;
         }
